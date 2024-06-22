@@ -32,7 +32,7 @@ public class Tasks {
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    @JoinColumn(name ="user_id")
+    @JoinColumn(name ="user_id_task")
     private User user;
 
 

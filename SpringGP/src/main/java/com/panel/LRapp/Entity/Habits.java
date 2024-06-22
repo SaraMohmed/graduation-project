@@ -31,7 +31,7 @@ public class Habits {
 
         @JsonIgnore
         @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-        @JoinColumn(name ="user_id")
+        @JoinColumn(name ="user_id_habit")
         private User user;
 
         public Habits(List<String> title, Date startDate, Date endDate, boolean done) {

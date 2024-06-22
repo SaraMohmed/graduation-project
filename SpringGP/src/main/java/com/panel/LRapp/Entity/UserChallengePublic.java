@@ -33,7 +33,7 @@ public class UserChallengePublic {
 
     @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY )
-    @JoinColumn(name ="user_id")
+    @JoinColumn(name ="user_id_public")
     private User user;
 
     public UserChallengePublic(String name, String description, List<String> days) {
