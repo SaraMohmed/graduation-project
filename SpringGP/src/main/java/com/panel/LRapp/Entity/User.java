@@ -181,14 +181,7 @@ public class User implements UserDetails {
     public void setTasks(List<Tasks> tasks) {
         this.tasks = tasks;
     }
-
-//    public ImageData getImageData() {
-//        return imageData;
-//    }
-//
-//    public void setImageData(ImageData imageData) {
-//        this.imageData = imageData;
-//    }
+    
 
     public Code getCo() {
         return co;
