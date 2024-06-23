@@ -7,7 +7,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -104,8 +103,7 @@ public class User implements UserDetails {
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
-    @JoinColumn(name = "code_id")
-    private code co;
+    private Code co;
 
 
 //    @JsonIgnore
@@ -192,11 +190,11 @@ public class User implements UserDetails {
 //        this.imageData = imageData;
 //    }
 
-    public code getCo() {
+    public Code getCo() {
         return co;
     }
 
-    public void setCo(code co) {
+    public void setCo(Code co) {
         this.co = co;
     }
 

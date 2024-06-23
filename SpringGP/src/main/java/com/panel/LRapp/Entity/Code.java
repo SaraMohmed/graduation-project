@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "codeUser")
-public class code {
+public class Code {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -14,13 +14,14 @@ public class code {
     private String code;
     @JsonIgnore
     @OneToOne(mappedBy = "co" , cascade = CascadeType.ALL)
+    @JoinColumn(name = "code_id")
     private User user;
 
-    public code(String code) {
+    public Code(String code) {
         this.code = code;
     }
 
-    public code() {
+    public Code() {
     }
 
     public String getCode() {
