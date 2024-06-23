@@ -82,8 +82,8 @@ public class PostsServiceImpl implements PostsService{
         }else{
             User user = posts.get().getUser();
             user.getPosts().remove(posts);
-            postsRepo.delete(posts);
-//            postsRepo.deleteById(id);
+//            postsRepo.delete(posts);
+            postsRepo.deleteById(id);
             return "deleted";
         }
 

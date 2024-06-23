@@ -10,5 +10,4 @@ import java.util.Optional;
 @EnableJpaRepositories
 @Repository
 public interface PostsRepo extends JpaRepository<Posts,Integer> {
-    void delete(Optional<Posts> posts);
 }
