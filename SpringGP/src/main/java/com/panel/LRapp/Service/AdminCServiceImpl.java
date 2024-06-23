@@ -20,6 +20,7 @@ public class AdminCServiceImpl implements AdminCService{
 
     @Override
     public AdminCResponse save(AdminChallenge adminChallenge) {
+
 //        AdminChallenge adminC=new AdminChallenge(adminChallenge.getIcon(), adminChallenge.getName(), adminChallenge.getDescription(),adminChallenge.getAdminCDays(), 0);
 //
 //        List<AdminCDays> adminCDays=new ArrayList<>();

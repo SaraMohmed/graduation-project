@@ -1,9 +1,7 @@
 package com.panel.LRapp.UserController;
 
 import com.panel.LRapp.Dto.*;
-import com.panel.LRapp.Entity.ImageData;
 import com.panel.LRapp.Entity.User;
-import com.panel.LRapp.Entity.code;
 import com.panel.LRapp.Service.StorageService;
 import com.panel.LRapp.Service.UserService;
 import com.panel.LRapp.Service.emailService;
@@ -11,13 +9,10 @@ import com.panel.LRapp.response.AuthenticationResponse;
 import com.panel.LRapp.response.LoginResponse;
 import com.panel.LRapp.utill.userCode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 

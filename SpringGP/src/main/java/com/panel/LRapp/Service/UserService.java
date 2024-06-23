@@ -3,7 +3,6 @@ package com.panel.LRapp.Service;
 import com.panel.LRapp.Dto.UserDTO;
 import com.panel.LRapp.Dto.loginDTO;
 import com.panel.LRapp.Entity.User;
-import com.panel.LRapp.Entity.code;
 import com.panel.LRapp.response.AuthenticationResponse;
 import com.panel.LRapp.response.LoginResponse;
 
