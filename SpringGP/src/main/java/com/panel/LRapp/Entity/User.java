@@ -103,7 +103,7 @@ public class User implements UserDetails {
 
     @JsonIgnore
     @OneToOne(cascade = CascadeType.ALL , fetch = FetchType.EAGER)
-    private Code co;
+    private code co;
 
 
 //    @JsonIgnore
@@ -181,13 +181,13 @@ public class User implements UserDetails {
     public void setTasks(List<Tasks> tasks) {
         this.tasks = tasks;
     }
-    
 
-    public Code getCo() {
+
+    public code getCo() {
         return co;
     }
 
-    public void setCo(Code co) {
+    public void setCo(code co) {
         this.co = co;
     }
 
