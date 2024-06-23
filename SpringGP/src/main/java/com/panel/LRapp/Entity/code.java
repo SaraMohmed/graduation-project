@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "codeUser")
-public class Code {
+public class code {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -17,11 +17,11 @@ public class Code {
     @JoinColumn(name = "code_id")
     private User user;
 
-    public Code(String code) {
+    public code(String code) {
         this.code = code;
     }
 
-    public Code() {
+    public code() {
     }
 
     public String getCode() {
