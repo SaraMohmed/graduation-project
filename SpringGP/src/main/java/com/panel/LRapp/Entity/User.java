@@ -8,7 +8,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -124,7 +126,8 @@ public class User implements UserDetails {
     private List<UserChallengePublic> userChallengePublics;
 
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
-    private List<Posts> posts;
+    private Set<Posts> posts = new HashSet<>();
+//    private List<Posts> posts;
 
     public List<UserChallengePrivate> getUserChallengePrivates() {
         return userChallengePrivates;
@@ -158,11 +161,11 @@ public class User implements UserDetails {
         this.userChallengePublics = userChallengePublics;
     }
 
-    public List<Posts> getPosts() {
+    public Set<Posts> getPosts() {
         return posts;
     }
 
-    public void setPosts(List<Posts> posts) {
+    public void setPosts(Set<Posts> posts) {
         this.posts = posts;
     }
 
