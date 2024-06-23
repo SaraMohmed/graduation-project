@@ -71,16 +71,37 @@ public class PostsServiceImpl implements PostsService{
         return new PostResponse("updated",postsRepo.save(p.get()));
     }
 
+//    @Override
+//    public String delete(int id) {
+//
+//        Optional<Posts> posts = postsRepo.findById(id);
+//
+//        if (postsRepo.findById(id).isEmpty()){
+//
+//            return "post not found to delete";
+//        }else{
+//            User user = posts.get().getUser();
+//            user.getPosts().remove(posts);
+////            postsRepo.delete(posts);
+//            postsRepo.deleteById(id);
+//            return "deleted";
+//        }
+//
+//    }
+
     @Override
-    public String delete(int id) {
+    public String delete(int id, String token) {
 
         Optional<Posts> posts = postsRepo.findById(id);
+
+        Token t= tokenRepository.findByToken(token.substring(7));
+        User user=userRepo.findByEmail(t.getUser().getEmail());
 
         if (postsRepo.findById(id).isEmpty()){
 
             return "post not found to delete";
         }else{
-            User user = posts.get().getUser();
+            user = posts.get().getUser();
             user.getPosts().remove(posts);
 //            postsRepo.delete(posts);
             postsRepo.deleteById(id);

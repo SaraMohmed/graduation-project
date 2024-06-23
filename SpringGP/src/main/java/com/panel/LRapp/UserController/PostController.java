@@ -32,8 +32,8 @@ public class PostController {
     }
 
     @DeleteMapping("/delete")
-    public String deletePost(@RequestParam("id") int id){
-        return postsService.delete(id);
+    public String deletePost(@RequestParam("id") int id, String token){
+        return postsService.delete(id, token);
     }
 
     @GetMapping("/getPost")
