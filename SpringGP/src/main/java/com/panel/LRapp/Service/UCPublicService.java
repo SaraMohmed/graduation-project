@@ -11,7 +11,7 @@ public interface UCPublicService {
     UCPublicResponse save(UserChallengePublic userChallengePublic,String t);
     void delete(int id);
     UCPublicResponse update(UserChallengePublic userChallengePublic,String t);
-    UCPublicResponse findById(int id,String t);
+    UCPublicResponse findById(int id);
 
     List<UserChallengePublic> findByName(String name);
 

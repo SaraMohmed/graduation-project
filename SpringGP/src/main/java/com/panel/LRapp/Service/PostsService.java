@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface PostsService {
-    PostResponse getPostById(int id,String t);
+    PostResponse getPostById(int id);
     PostList findAll();
 
     PostResponse createNewPost(post postDto, String t);

@@ -37,8 +37,8 @@ public class PostController {
     }
 
     @GetMapping("/getPost")
-    public PostResponse getPostById(@RequestParam("id") int id, @RequestHeader("Authorization") String t){
-        return postsService.getPostById(id,t);
+    public PostResponse getPostById(@RequestParam("id") int id){
+        return postsService.getPostById(id);
     }
 
     @GetMapping("/getAllPosts")

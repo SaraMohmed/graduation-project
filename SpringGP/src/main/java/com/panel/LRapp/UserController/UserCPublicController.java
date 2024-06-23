@@ -31,8 +31,8 @@ public class UserCPublicController {
     }
 
     @GetMapping("/findChallenge")
-    public UCPublicResponse findById(@RequestParam("ChallengeId") int id,@RequestHeader("Authorization") String t){
-        return ucPublicService.findById(id,t);
+    public UCPublicResponse findById(@RequestParam("ChallengeId") int id){
+        return ucPublicService.findById(id);
     }
 
     @GetMapping("/search")

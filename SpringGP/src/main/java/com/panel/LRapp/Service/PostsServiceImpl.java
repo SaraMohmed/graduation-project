@@ -28,9 +28,9 @@ public class PostsServiceImpl implements PostsService{
     private TokenRepository tokenRepository;
 
     @Override
-    public PostResponse getPostById(int id,String token) {
-        Token t= tokenRepository.findByToken(token.substring(7));
-        User user=userRepo.findByEmail(t.getUser().getEmail());
+    public PostResponse getPostById(int id) {
+//        Token t= tokenRepository.findByToken(token.substring(7));
+//        User user=userRepo.findByEmail(t.getUser().getEmail());
         if (postsRepo.findById(id).isEmpty()){
             return new PostResponse("post not found", null);
         }
