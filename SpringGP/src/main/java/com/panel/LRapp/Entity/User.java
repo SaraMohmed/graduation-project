@@ -125,7 +125,7 @@ public class User implements UserDetails {
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
     private List<UserChallengePublic> userChallengePublics;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Posts> posts = new HashSet<>();
 //    private List<Posts> posts;
 
