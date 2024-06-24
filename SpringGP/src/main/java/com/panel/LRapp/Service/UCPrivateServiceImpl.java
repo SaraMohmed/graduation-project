@@ -1,5 +1,6 @@
 package com.panel.LRapp.Service;
 
+import com.panel.LRapp.Entity.Posts;
 import com.panel.LRapp.Entity.Token;
 import com.panel.LRapp.Entity.User;
 import com.panel.LRapp.Entity.UserChallengePrivate;
@@ -11,6 +12,7 @@ import com.panel.LRapp.response.UCPrivateResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -33,9 +35,33 @@ public class UCPrivateServiceImpl implements UCPrivateService {
 
     }
 
+    @Transactional
     @Override
-    public void delete(int id) {
-         ucPrivateRepo.deleteById(id);
+    public String delete(int id,String token) {
+        String tokenValue = token.substring(7);
+        Token t = tokenRepository.findByToken(tokenValue);
+
+        if (t == null || t.getUser() == null) {
+            return "Invalid token";
+        }
+
+        User user = userRepo.findByEmail(t.getUser().getEmail());
+        Optional<UserChallengePrivate> optionalChallengePrivate = ucPrivateRepo.findById(id);
+
+        if (optionalChallengePrivate.isEmpty()) {
+            return "Challenge not found to delete";
+        }
+
+        UserChallengePrivate challengePrivate = optionalChallengePrivate.get();
+
+        if (!challengePrivate.getUser().equals(user)) {
+            return "User not authorized to delete this post";
+        }
+
+        user.getUserChallengePrivates().remove(challengePrivate);
+
+        ucPrivateRepo.delete(challengePrivate);
+        return "Deleted";
     }
 
     @Override

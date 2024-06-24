@@ -32,7 +32,7 @@ public class UserChallengePublic {
     private List<String> days;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY )
+    @ManyToOne(fetch = FetchType.LAZY )
     @JoinColumn(name ="user_id_public")
     private User user;
 

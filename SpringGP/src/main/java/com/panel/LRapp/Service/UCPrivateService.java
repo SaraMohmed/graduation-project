@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UCPrivateService {
     UCPrivateResponse save(UserChallengePrivate userChallengePrivate,String t);
-    void delete(int id);
+    String delete(int id,String token);
     UCPrivateResponse update(UserChallengePrivate userChallengePrivate);
     UCPrivateResponse findById(int id);
 

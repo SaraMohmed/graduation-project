@@ -13,6 +13,7 @@ import com.panel.LRapp.response.PostResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -71,44 +72,37 @@ public class PostsServiceImpl implements PostsService{
         return new PostResponse("updated",postsRepo.save(p.get()));
     }
 
-//    @Override
-//    public String delete(int id) {
-//
-//        Optional<Posts> posts = postsRepo.findById(id);
-//
-//        if (postsRepo.findById(id).isEmpty()){
-//
-//            return "post not found to delete";
-//        }else{
-//            User user = posts.get().getUser();
-//            user.getPosts().remove(posts);
-////            postsRepo.delete(posts);
-//            postsRepo.deleteById(id);
-//            return "deleted";
-//        }
-//
-//    }
 
+    @Transactional
     @Override
     public String delete(int id, String token) {
 
-        Optional<Posts> posts = postsRepo.findById(id);
+        String tokenValue = token.substring(7);
+        Token t = tokenRepository.findByToken(tokenValue);
 
-        Token t= tokenRepository.findByToken(token.substring(7));
-        User user=userRepo.findByEmail(t.getUser().getEmail());
-
-        if (postsRepo.findById(id).isEmpty()){
-
-            return "post not found to delete";
-        }else{
-            user = posts.get().getUser();
-            user.getPosts().remove(posts);
-//            postsRepo.delete(posts);
-            postsRepo.deleteById(id);
-            return "deleted";
+        if (t == null || t.getUser() == null) {
+            return "Invalid token";
         }
 
+        User user = userRepo.findByEmail(t.getUser().getEmail());
+        Optional<Posts> optionalPost = postsRepo.findById(id);
+
+        if (optionalPost.isEmpty()) {
+            return "Post not found to delete";
+        }
+
+        Posts post = optionalPost.get();
+
+        if (!post.getUser().equals(user)) {
+            return "User not authorized to delete this post";
+        }
+
+        user.getPosts().remove(post);
+
+        postsRepo.delete(post);
+        return "Deleted";
     }
+
 
 //    @Override
 //    public PostResponse updateLike(PostsDTO postDto) {

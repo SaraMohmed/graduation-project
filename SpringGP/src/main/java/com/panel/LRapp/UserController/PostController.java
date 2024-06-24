@@ -32,7 +32,7 @@ public class PostController {
     }
 
     @DeleteMapping("/delete")
-    public String deletePost(@RequestParam("id") int id, String token){
+    public String deletePost(@RequestParam("id") int id,@RequestHeader("Authorization") String token){
         return postsService.delete(id, token);
     }
 

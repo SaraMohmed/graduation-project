@@ -30,7 +30,7 @@ public class Habits {
         private boolean done;
 
         @JsonIgnore
-        @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+        @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name ="user_id_habit")
         private User user;
 

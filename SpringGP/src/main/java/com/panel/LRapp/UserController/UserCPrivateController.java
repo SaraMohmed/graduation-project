@@ -23,8 +23,8 @@ public class UserCPrivateController {
     }
 
     @DeleteMapping("/delete")
-    public String deleteChallenge(@RequestParam("ChallengeId") int id){
-        ucPrivateService.delete(id);
+    public String deleteChallenge(@RequestParam("ChallengeId") int id,@RequestHeader("Authorization") String token){
+        ucPrivateService.delete(id,token);
         return "Challenge delete Successfully";
     }
 
