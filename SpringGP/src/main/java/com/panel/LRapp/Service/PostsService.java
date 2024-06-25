@@ -16,7 +16,7 @@ public interface PostsService {
 
     PostResponse createNewPost(post postDto, String t);
 
-    PostResponse update(PostsDTO postDto, String token);
+    PostResponse update(Posts posts, String token);
 
     String delete(int id, String token);
 //    PostResponse updateLike(PostsDTO postDto);

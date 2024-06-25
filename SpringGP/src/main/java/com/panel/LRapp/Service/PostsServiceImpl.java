@@ -104,7 +104,7 @@ public class PostsServiceImpl implements PostsService{
     }
 
     @Override
-    public PostResponse update(PostsDTO postDto, String token) {
+    public PostResponse update(Posts posts, String token) {
 
         String tokenValue = token.substring(7);
         Token t = tokenRepository.findByToken(tokenValue);
@@ -114,20 +114,22 @@ public class PostsServiceImpl implements PostsService{
         }
 
         User user = userRepo.findByEmail(t.getUser().getEmail());
-        Optional<Posts> p = postsRepo.findById(postDto.getId());
+        Optional<Posts> p = postsRepo.findById(posts.getId());
 
         if (p.isEmpty()) {
             return new PostResponse( "Post not found to update", null);
         }
 
-        if (!p.get().getUser().equals(user)) {
-            return new PostResponse("User not authorized to delete this post",null);
+        Posts post = p.get();
+
+        if (!post.getUser().equals(user)) {
+            return new PostResponse( "User not authorized to update this post", null);
         }
 
-        p.get().setDisLike(postDto.getDisLike());
-        p.get().setLike(postDto.getLike());
-        p.get().setUserLiked(postDto.isUserLiked());
-        p.get().setUserDisLiked(postDto.isUserDisLiked());
+        p.get().setDisLike(posts.getDisLike());
+        p.get().setLike(posts.getLike());
+        p.get().setUserLiked(posts.isUserLiked());
+        p.get().setUserDisLiked(posts.isUserDisLiked());
 
 
         return new PostResponse("updated",postsRepo.save(p.get()));
