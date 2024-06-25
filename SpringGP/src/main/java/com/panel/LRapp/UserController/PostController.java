@@ -27,8 +27,8 @@ public class PostController {
     }
 
     @PutMapping("/update")
-    public PostResponse updatePost(@RequestBody PostsDTO postDto){
-        return postsService.update(postDto);
+    public PostResponse updatePost(@RequestBody PostsDTO postDto, @RequestHeader("Authorization") String t){
+        return postsService.update(postDto,t);
     }
 
     @DeleteMapping("/delete")

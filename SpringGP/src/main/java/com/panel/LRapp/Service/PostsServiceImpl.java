@@ -58,19 +58,19 @@ public class PostsServiceImpl implements PostsService{
         return new PostResponse("Post added successfully",postsRepo.save(p));
     }
 
-    @Override
-    public PostResponse update(PostsDTO postDto) {
-
-        Optional<Posts> p=postsRepo.findById(postDto.getId());
-        if(postDto.getLike()==0) {
-            p.get().setDisLike(postDto.getDisLike());
-
-        }else if (postDto.getDisLike()==0) {
-            p.get().setLike(postDto.getLike());
-        }
-
-        return new PostResponse("updated",postsRepo.save(p.get()));
-    }
+//    @Override
+//    public PostResponse update(PostsDTO postDto) {
+//
+//        Optional<Posts> p=postsRepo.findById(postDto.getId());
+//        if(postDto.getLike()==0) {
+//            p.get().setDisLike(postDto.getDisLike());
+//
+//        }else if (postDto.getDisLike()==0) {
+//            p.get().setLike(postDto.getLike());
+//        }
+//
+//        return new PostResponse("updated",postsRepo.save(p.get()));
+//    }
 
 
     @Transactional
@@ -101,6 +101,36 @@ public class PostsServiceImpl implements PostsService{
 
         postsRepo.delete(post);
         return "Deleted";
+    }
+
+    @Override
+    public PostResponse update(PostsDTO postDto, String token) {
+
+        String tokenValue = token.substring(7);
+        Token t = tokenRepository.findByToken(tokenValue);
+
+        if (t == null || t.getUser() == null) {
+            return new PostResponse("Invalid token", null);
+        }
+
+        User user = userRepo.findByEmail(t.getUser().getEmail());
+        Optional<Posts> p = postsRepo.findById(postDto.getId());
+
+        if (p.isEmpty()) {
+            return new PostResponse( "Post not found to update", null);
+        }
+
+        if (!p.get().getUser().equals(user)) {
+            return new PostResponse("User not authorized to delete this post",null);
+        }
+
+        p.get().setDisLike(postDto.getDisLike());
+        p.get().setLike(postDto.getLike());
+        p.get().setUserLiked(postDto.isUserLiked());
+        p.get().setUserDisLiked(postDto.isUserDisLiked());
+
+
+        return new PostResponse("updated",postsRepo.save(p.get()));
     }
 
 

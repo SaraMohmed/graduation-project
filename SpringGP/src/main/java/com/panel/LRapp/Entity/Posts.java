@@ -33,6 +33,11 @@ public class Posts {
     @Column(name = "image")
     private String image;
 
+    @Column(columnDefinition = "varchar(255) default 'false'")
+    private boolean userLiked;
+
+    @Column(columnDefinition = "varchar(255) default 'false'")
+    private boolean userDisLiked;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
