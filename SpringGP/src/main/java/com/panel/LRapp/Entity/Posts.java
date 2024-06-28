@@ -19,7 +19,7 @@ public class Posts {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "content",length = 1024)
+    @Column(name = "content",length = 2000)
     private String content;
 
     @Column(name = "countL")
