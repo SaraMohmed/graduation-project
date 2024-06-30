@@ -5,7 +5,9 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "feelings")
@@ -27,16 +29,22 @@ public class feelings {
     @Column(name = "Description")
     private String description;
 
-    @Column(name = "advice")
-    private List<String> advice;
+//    @Column(name = "advice")
+//    private List<String> advice;
+//
+//    @Column(name = "file")
+//    private List<String> file;
 
-    @Column(name = "file")
-    private List<String> file;
-
-    public feelings(String name, String description, List<String> advice, List<String> file) {
+    public feelings(String name, String description) {
         this.name = name;
         this.description = description;
-        this.advice = advice;
-        this.file = file;
     }
+
+    @OneToMany(mappedBy = "feeling",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<FeelingDays> feelingDays;
+
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "feelingsSet")
+    private Set<User> user = new HashSet<>();
 }

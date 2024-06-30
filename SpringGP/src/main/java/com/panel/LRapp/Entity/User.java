@@ -129,6 +129,14 @@ public class User implements UserDetails {
     private Set<Posts> posts = new HashSet<>();
 //    private List<Posts> posts;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_feel",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "feel_id")
+    )
+    private Set<feelings> feelingsSet = new HashSet<>();
+
     public List<UserChallengePrivate> getUserChallengePrivates() {
         return userChallengePrivates;
     }

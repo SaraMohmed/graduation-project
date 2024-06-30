@@ -24,7 +24,7 @@ public class feelingsController {
     private feelingsService fService;
 
     @PostMapping("/save")
-    public feelingsResponse addFeeling(@RequestBody feelingsDTO fDto){
+    public feelingsResponse addFeeling(@RequestBody feelings fDto){
 
         return fService.save(fDto);
     }

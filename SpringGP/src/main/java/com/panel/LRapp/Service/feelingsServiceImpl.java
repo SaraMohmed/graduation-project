@@ -2,6 +2,7 @@ package com.panel.LRapp.Service;
 
 import com.panel.LRapp.Dto.feelingsDTO;
 
+import com.panel.LRapp.Entity.FeelingDays;
 import com.panel.LRapp.Entity.feelings;
 import com.panel.LRapp.Repo.feelingsRepo;
 
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,13 +22,21 @@ public class feelingsServiceImpl implements feelingsService{
 
 
     @Override
-    public feelingsResponse save(feelingsDTO fDTO) {
-        feelings f=new feelings(fDTO.getName()
-                ,fDTO.getDescription()
-                ,fDTO.getAdvice()
-                ,fDTO.getFile());
+    public feelingsResponse save(feelings fDTO) {
 
-        return new feelingsResponse("add feeling Successfully",fRepo.save(f));
+        feelings feel=new feelings(fDTO.getName(),fDTO.getDescription());
+
+        List<FeelingDays> feelingDays=new ArrayList<>();
+        for (FeelingDays fIn: fDTO.getFeelingDays()){
+            FeelingDays feelingDays1=new FeelingDays(fIn.getAdvice());
+            feelingDays1.setFeeling(feel);
+
+            feelingDays.add(feelingDays1);
+        }
+
+        feel.setFeelingDays(feelingDays);
+
+        return new feelingsResponse("تمت الاضافه بنجاح :)",fRepo.save(feel));
     }
 
     @Override
@@ -42,7 +52,6 @@ public class feelingsServiceImpl implements feelingsService{
         }else{
             f.get().setName(fDTO.getName());
             f.get().setDescription(fDTO.getDescription());
-            f.get().setAdvice(fDTO.getAdvice());
             return new feelingsResponse("update feeling Successfully",fRepo.save(f.get()));
         }
 

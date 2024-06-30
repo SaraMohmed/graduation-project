@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface feelingsService {
 
-   feelingsResponse save(feelingsDTO fDTO);
+   feelingsResponse save(feelings fDTO);
    void delete(int id);
    feelingsResponse update(feelingsDTO fDTO);
    feelingsResponse findById(int id);
