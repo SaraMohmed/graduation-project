@@ -19,8 +19,11 @@ public class AdminChallenge {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "icon")
-    private String icon;
+    @Column(name = "icon1")
+    private String icon1;
+
+    @Column(name = "icon2")
+    private String icon2;
 
     @Column(name = "name")
     private String name;
@@ -36,16 +39,18 @@ public class AdminChallenge {
     @Column(name = "rate")
     private boolean isDone;
 
-    public AdminChallenge(String icon, String name, String description, List<AdminCDays> adminCDays, boolean isDone) {
-        this.icon = icon;
+    public AdminChallenge(String icon1,String icon2, String name, String description, List<AdminCDays> adminCDays, boolean isDone) {
+        this.icon1 = icon1;
+        this.icon2 = icon2;
         this.name = name;
         this.description = description;
         this.adminCDays = adminCDays;
         this.isDone = isDone;
     }
 
-    public AdminChallenge(String icon, String name, String description, boolean isDone) {
-        this.icon = icon;
+    public AdminChallenge(String icon1,String icon2, String name, String description, boolean isDone) {
+        this.icon1 = icon1;
+        this.icon2 = icon2;
         this.name = name;
         this.description = description;
         this.isDone = isDone;

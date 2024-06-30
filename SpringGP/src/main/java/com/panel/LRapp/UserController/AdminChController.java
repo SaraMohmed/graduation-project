@@ -23,17 +23,17 @@ public class AdminChController {
     @PostMapping("/save")
     public AdminCResponse addChallenge(@RequestBody AdminChallenge adminChallenge) {
 
-        AdminChallenge adminC=new AdminChallenge(adminChallenge.getIcon(), adminChallenge.getName(), adminChallenge.getDescription(), false);
-
-        List<AdminCDays> adminCDays=new ArrayList<>();
-        for (AdminCDays adminIn: adminChallenge.getAdminCDays()){
-            AdminCDays adminCDays1=new AdminCDays(adminIn.getFile(),adminIn.getContent(),0);
-            adminCDays1.setAdminChallenge(adminC);
-            adminCDays.add(adminCDays1);
-        }
-
-        adminC.setAdminCDays(adminCDays);
-        return adminCService.save(adminC);
+//        AdminChallenge adminC=new AdminChallenge(adminChallenge.getIcon(), adminChallenge.getName(), adminChallenge.getDescription(), false);
+//
+//        List<AdminCDays> adminCDays=new ArrayList<>();
+//        for (AdminCDays adminIn: adminChallenge.getAdminCDays()){
+//            AdminCDays adminCDays1=new AdminCDays(adminIn.getFile(),adminIn.getContent(),0);
+//            adminCDays1.setAdminChallenge(adminC);
+//            adminCDays.add(adminCDays1);
+//        }
+//
+//        adminC.setAdminCDays(adminCDays);
+        return adminCService.save(adminChallenge);
     }
 
     @DeleteMapping("/delete")

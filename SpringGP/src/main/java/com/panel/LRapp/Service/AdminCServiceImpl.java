@@ -1,6 +1,7 @@
 package com.panel.LRapp.Service;
 
 
+import com.panel.LRapp.Entity.AdminCDays;
 import com.panel.LRapp.Entity.AdminChallenge;
 
 import com.panel.LRapp.Repo.AdminCRepo;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +34,18 @@ public class AdminCServiceImpl implements AdminCService{
 //
 //        adminC.setAdminCDays(adminCDays);
 
-        return new AdminCResponse("Challenge Saved Successfully :) ",adminCRepo.save(adminChallenge));
+        AdminChallenge adminC=new AdminChallenge(adminChallenge.getIcon1(),adminChallenge.getIcon2(), adminChallenge.getName(), adminChallenge.getDescription(), false);
+
+        List<AdminCDays> adminCDays=new ArrayList<>();
+        for (AdminCDays adminIn: adminChallenge.getAdminCDays()){
+            AdminCDays adminCDays1=new AdminCDays(adminIn.getName(),adminIn.getFile(),adminIn.getContent(),adminC,0);
+            adminCDays1.setAdminChallenge(adminC);
+            adminCDays.add(adminCDays1);
+        }
+
+        adminC.setAdminCDays(adminCDays);
+
+        return new AdminCResponse("تمت الاضافه بنجاح :)",adminCRepo.save(adminChallenge));
     }
 
     @Override
@@ -44,15 +57,16 @@ public class AdminCServiceImpl implements AdminCService{
     public AdminCResponse update(AdminChallenge adminChallenge) {
         Optional<AdminChallenge> adminChallenge1=adminCRepo.findById(adminChallenge.getId());
         if(adminChallenge1.isEmpty()){
-            return new AdminCResponse("this Challenge not found",null);
+            return new AdminCResponse("لم يتم العثور على هذا التحدي :(",null);
         }else{
             adminChallenge1.get().setName(adminChallenge.getName());
             adminChallenge1.get().setDescription(adminChallenge.getDescription());
-            adminChallenge1.get().setIcon(adminChallenge.getIcon());
+            adminChallenge1.get().setIcon1(adminChallenge.getIcon1());
+            adminChallenge1.get().setIcon2(adminChallenge.getIcon2());
             adminChallenge1.get().setDone(adminChallenge.isDone());
             adminChallenge1.get().setAdminCDays(adminChallenge.getAdminCDays());
 
-            return new AdminCResponse("update Challenge Successfully",adminCRepo.save(adminChallenge1.get()));
+            return new AdminCResponse("تم التعديل بنجاح :)",adminCRepo.save(adminChallenge1.get()));
         }
     }
 
@@ -60,9 +74,9 @@ public class AdminCServiceImpl implements AdminCService{
     public AdminCResponse findById(int id) {
         Optional<AdminChallenge> adminChallenge1=adminCRepo.findById(id);
         if(adminChallenge1.isEmpty()){
-            return new AdminCResponse("this Challenge not found",null);
+            return new AdminCResponse("لم يتم العثور على هذا التحدي :(",null);
         }
-        return new AdminCResponse(" Challenge found",adminChallenge1.get());
+        return new AdminCResponse("تم العثور على التحدي بنجاح :)",adminChallenge1.get());
     }
 
     @Override
