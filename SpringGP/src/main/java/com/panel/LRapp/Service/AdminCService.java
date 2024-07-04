@@ -1,12 +1,7 @@
 package com.panel.LRapp.Service;
 
-import com.panel.LRapp.Dto.AdminDTO;
-import com.panel.LRapp.Dto.feelingsDTO;
 import com.panel.LRapp.Entity.AdminChallenge;
-import com.panel.LRapp.Entity.feelings;
 import com.panel.LRapp.response.AdminCResponse;
-import com.panel.LRapp.response.CRAdminCU;
-import com.panel.LRapp.response.feelingsResponse;
 
 import java.util.List;
 

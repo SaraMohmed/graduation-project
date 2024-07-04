@@ -1,18 +1,14 @@
 package com.panel.LRapp.Service;
 
 
-import com.panel.LRapp.Dto.AdminDTO;
 import com.panel.LRapp.Entity.AdminCDays;
 import com.panel.LRapp.Entity.AdminChallenge;
 
-import com.panel.LRapp.Entity.Token;
-import com.panel.LRapp.Entity.User;
 import com.panel.LRapp.Repo.AdminCRepo;
 import com.panel.LRapp.Repo.TokenRepository;
 import com.panel.LRapp.Repo.UserRepo;
 import com.panel.LRapp.response.AdminCResponse;
 
-import com.panel.LRapp.response.CRAdminCU;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
