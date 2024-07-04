@@ -39,6 +39,11 @@ public class AdminChallenge {
     @Column(name = "rate")
     private boolean isDone;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "adminChallengeSet")
+    private List<User> user;
+
+
     public AdminChallenge(String icon1,String icon2, String name, String description, List<AdminCDays> adminCDays, boolean isDone) {
         this.icon1 = icon1;
         this.icon2 = icon2;

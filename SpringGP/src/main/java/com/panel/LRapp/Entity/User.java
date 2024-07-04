@@ -169,6 +169,26 @@ public class User implements UserDetails {
         this.userChallengePublics = userChallengePublics;
     }
 
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_admin",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "admin_id")
+    )
+    private List<AdminChallenge> adminChallengeSet;
+
+    public List<AdminChallenge> getAdminChallengeSet() {
+        return adminChallengeSet;
+    }
+    public void setAdminChallengeSet(List<AdminChallenge> adminChallengeSet) {
+        this.adminChallengeSet = adminChallengeSet;
+    }
+
+
+
+
+
     public Set<Posts> getPosts() {
         return posts;
     }
