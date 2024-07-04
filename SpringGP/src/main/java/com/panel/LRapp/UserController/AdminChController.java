@@ -42,10 +42,10 @@ public class AdminChController {
         return "Challenge delete Successfully";
     }
 
-    @GetMapping("/findChallenge")
-    public AdminCResponse findById(@RequestParam("ChallengeId") int id){
-        return adminCService.findById(id);
-    }
+//    @GetMapping("/findChallenge")
+//    public AdminCResponse findById(@RequestParam("ChallengeId") int id){
+//        return adminCService.findById(id);
+//    }
 
     @GetMapping("/search")
     public List<AdminChallenge> search(@RequestParam("search") String name){
@@ -56,6 +56,7 @@ public class AdminChController {
     public List<AdminChallenge> findAllChallenge(){
         return adminCService.findAll();
     }
+
 
     @PutMapping("/update")
     public AdminCResponse updateChallenge(@RequestBody AdminChallenge adminChallenge){
