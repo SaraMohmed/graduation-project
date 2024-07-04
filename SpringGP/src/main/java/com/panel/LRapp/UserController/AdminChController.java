@@ -5,6 +5,7 @@ import com.panel.LRapp.Entity.AdminCDays;
 import com.panel.LRapp.Entity.AdminChallenge;
 
 import com.panel.LRapp.Service.AdminCService;
+import com.panel.LRapp.response.ACDisplayResponse;
 import com.panel.LRapp.response.AdminCResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,10 +43,10 @@ public class AdminChController {
         return "Challenge delete Successfully";
     }
 
-//    @GetMapping("/findChallenge")
-//    public AdminCResponse findById(@RequestParam("ChallengeId") int id){
-//        return adminCService.findById(id);
-//    }
+    @GetMapping("/findChallenge")
+    public ACDisplayResponse findById(@RequestParam("ChallengeId") int id){
+        return adminCService.findById(id);
+    }
 
     @GetMapping("/search")
     public List<AdminChallenge> search(@RequestParam("search") String name){
