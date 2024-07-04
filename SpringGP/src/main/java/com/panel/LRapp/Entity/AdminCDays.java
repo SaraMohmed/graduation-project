@@ -32,24 +32,26 @@ public class AdminCDays {
     private AdminChallenge adminChallenge;
 
     @Column(name = "rate")
-    private int rate;
+    private double rate;
 
-    public AdminCDays(String name, String file, String content, AdminChallenge adminChallenge, int rate) {
+    @Column(name = "done")
+    private boolean isDone;
+
+    public AdminCDays(String name, String file, String content, double rate) {
         this.name = name;
         this.file = file;
         this.content = content;
-        this.adminChallenge = adminChallenge;
         this.rate = rate;
     }
 
-    public AdminCDays(String file, String content, AdminChallenge adminChallenge, int rate) {
+    public AdminCDays(String file, String content, AdminChallenge adminChallenge, double rate) {
         this.file = file;
         this.content = content;
         this.adminChallenge = adminChallenge;
         this.rate = rate;
     }
 
-    public AdminCDays(String file, String content, int rate) {
+    public AdminCDays(String file, String content, double rate) {
         this.file = file;
         this.content = content;
         this.rate = rate;

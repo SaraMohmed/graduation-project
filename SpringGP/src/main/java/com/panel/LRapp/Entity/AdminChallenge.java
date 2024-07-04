@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "adminChallenge")
@@ -36,28 +38,23 @@ public class AdminChallenge {
     private List<AdminCDays> adminCDays;
 
 
-    @Column(name = "rate")
+    @Column(name = "done")
     private boolean isDone;
+
+    @Column(name = "rate")
+    private double rate;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "adminChallengeSet")
     private List<User> user;
-
-
-    public AdminChallenge(String icon1,String icon2, String name, String description, List<AdminCDays> adminCDays, boolean isDone) {
-        this.icon1 = icon1;
-        this.icon2 = icon2;
-        this.name = name;
-        this.description = description;
-        this.adminCDays = adminCDays;
-        this.isDone = isDone;
-    }
-
-    public AdminChallenge(String icon1,String icon2, String name, String description, boolean isDone) {
+    public AdminChallenge(String icon1, String icon2, String name, String description,  boolean isDone, double rate) {
         this.icon1 = icon1;
         this.icon2 = icon2;
         this.name = name;
         this.description = description;
         this.isDone = isDone;
+        this.rate = rate;
     }
+
+
 }
