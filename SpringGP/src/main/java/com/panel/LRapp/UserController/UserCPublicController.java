@@ -31,7 +31,7 @@ public class UserCPublicController {
     }
 
     @GetMapping("/findChallenge")
-    public UCPublicResponse findById(@RequestParam("ChallengeId") int id){
+    public UserChallengePublic findById(@RequestParam("ChallengeId") int id){
         return ucPublicService.findById(id);
     }
 

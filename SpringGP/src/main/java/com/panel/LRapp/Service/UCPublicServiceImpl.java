@@ -55,17 +55,27 @@ public class UCPublicServiceImpl implements UCPublicService{
         }
     }
 
+//    @Override
+//    public UCPublicResponse findById(int id) {
+////        Token t= tokenRepository.findByToken(token.substring(7));
+//        Optional<User> user=userRepo.findById(id);
+//        Optional<UserChallengePublic> userChallengePublic=ucPublicRepo.findById(id);
+//        if(userChallengePublic.isEmpty()){
+//            return new UCPublicResponse("this Challenge not found",null,null,null);
+//        }
+//        return new UCPublicResponse(" Challenge found",userChallengePublic.get(),user.get().getName(),user.get().getImage());
+//
+//    }
+
     @Override
-    public UCPublicResponse findById(int id) {
-//        Token t= tokenRepository.findByToken(token.substring(7));
-        Optional<User> user=userRepo.findById(id);
+    public UserChallengePublic findById(int id) {
+
         Optional<UserChallengePublic> userChallengePublic=ucPublicRepo.findById(id);
-        if(userChallengePublic.isEmpty()){
-            return new UCPublicResponse("this Challenge not found",null,null,null);
-        }
-        return new UCPublicResponse(" Challenge found",userChallengePublic.get(),user.get().getName(),user.get().getImage());
+        return userChallengePublic.get();
 
     }
+
+
 
     @Override
     public List<UserChallengePublic> findByName(String name) {
